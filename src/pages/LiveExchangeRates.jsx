@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { currencies } from '../currency';
 import { TextField, Autocomplete } from '@mui/material';
 import axios from 'axios';
@@ -14,23 +14,21 @@ export default function LiveExchangeRates() {
       setBaseCurrency(newValue.value);
     }
   }
-
-  // Define the axios options using useMemo
-  const axiosOptions = useMemo(() => {
-    const apiKey = import.meta.env.VITE_API_KEY;
-    return {
-      params: {
-        base: baseCurrency,
-      },
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "content-type": "application/json",
-      }
-    };
-  }, [baseCurrency]); // Re-create options when baseCurrency changes
-
+  useEffect(() => {
+    document.title = 'Live Exchange Rate - Currency Globe';
+  }, []);
   useEffect(() => {
     async function getLiveExchangeRates() {
+      const apiKey = import.meta.env.VITE_API_KEY;
+      const axiosOptions = {
+        params: {
+          base: baseCurrency,
+        },
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "content-type": "application/json",
+        }
+      };
       try {
         const response = await axios.get("https://api.currencybeacon.com/v1/latest", axiosOptions);
         const data = response.data.rates;
@@ -40,7 +38,7 @@ export default function LiveExchangeRates() {
       }
     }
     getLiveExchangeRates();
-  }, [axiosOptions]); // Re-trigger effect when axiosOptions changes
+  }, [baseCurrency]); // Re-trigger effect when axiosOptions changes
 
   const cardList = Object.keys(exchangedCurrenciesList).map((currency, index) => {
     const currencyCode = currency;
@@ -48,6 +46,7 @@ export default function LiveExchangeRates() {
 
     return <Card key={index} currencyCode={currencyCode} exchangeValue={exchangeValue} />
   })
+
   return (
     <div className="min-h-[calc(100vh-80px)] w-full px-3 sm:px-8 py-3">
       <div style={{ borderColor: `${selectedColor}` }} className={`bg-white p-5 border-2 rounded-lg mb-5`}>
