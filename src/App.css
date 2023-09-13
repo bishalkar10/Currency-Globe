@@ -1,0 +1,26 @@
+/* Default styles for the chart */
+.chart {
+  max-height: 400px;
+  min-width: 500px; /* Initial width, you can adjust as needed */
+  margin: 0 auto;
+}
+
+.chart-container {
+  width: 100%;
+  height: auto;
+  overflow-x: auto;
+}
+/* Media query for screens with a max-width of 768px */
+@media (min-width: 640px) {
+  .chart {
+    width: 90%; /* Adjust the width for smaller screens */
+  }
+}
+
+/* Media query for screens with a max-width of 480px */
+@media (min-width: 480px) {
+  .chart {
+    max-height: fit-content;
+    width: 100%; /* Adjust the width for even smaller screens */
+  }
+}
