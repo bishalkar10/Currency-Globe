@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import BarChart from "../components/BarChart";
 import { currencies } from '../currency';
@@ -55,23 +55,9 @@ export default function HistoricalRateChart() {
     return chartData;
   }
 
-  const axiosOptions = useMemo(() => {
-    const apiKey = import.meta.env.VITE_PRINCIPAL_API_KEY;
-    return {
-      method: 'GET',
-      url: 'https://currency-conversion-and-exchange-rates.p.rapidapi.com/timeseries',
-      params: {
-        start_date: seventhDay,
-        end_date: today,
-      },
-      headers: {
-        'X-RapidAPI-Key': apiKey,
-        'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com'
-      }
-    };
-  }, []); // Re-create options when baseCurrency changes
-
-
+  useEffect(() => {
+    document.title = 'Historical Rate Chart - Currency Globe';
+  }, []);
 
   useEffect(() => {
     async function getLiveExchangeRates() {
