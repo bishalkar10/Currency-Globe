@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../App.css';
 import { Autocomplete, Box, TextField, Typography, CircularProgress } from '@mui/material';
@@ -18,6 +18,10 @@ export default function CurrencyConverter() {
   const [loading, setLoading] = useState(false); // used to handle the loading state of the app
   const selectedColor = useSelector(state => state.theme.color);
 
+  useEffect(() => {
+    document.title = 'Currency Converter - Currency Globe';
+  }, []);
+
   const handleOptionChange = (fieldName, newValue) => {
     setSelectedCurrencies((prevSelectedCurrencies) => ({
       ...prevSelectedCurrencies,
@@ -34,15 +38,21 @@ export default function CurrencyConverter() {
   };
 
   const fetchExchangeRates = async () => {
-    setLoading(true);
 
     if (amount == 0) {
-
-      setLoading(false);
       setError(true)
       return
     }
-    setLoading(false);
+    if (selectedCurrencies.fromCurrency === selectedCurrencies.toCurrency) {
+      console.log('same currency')
+      return
+    }
+    if (selectedCurrencies.fromCurrency == null || selectedCurrencies.toCurrency == null) {
+      console.log('null currency')
+      return
+    }
+
+    setLoading(true);
     const apiKey = import.meta.env.VITE_API_KEY;
     const url = "https://api.currencybeacon.com/v1/";
     const endpoint = "convert";
@@ -70,7 +80,6 @@ export default function CurrencyConverter() {
       setLoading(false);
     }
   }
-  const color = "red"
   return (
 
     <div className="grid place-content-center min-h-[calc(100vh-80px)] w-full">
