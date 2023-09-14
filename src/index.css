@@ -15,7 +15,8 @@
   }
 }
 
-/* Prevent scrollbars to appear when closing the sidebar on small screens */
+/* Prevent scrollbars to appear when closing the sidebar on small screens 
 html {
   overflow-x: hidden; 
 }
+*/
