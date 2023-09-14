@@ -30,18 +30,18 @@ export default function Navbar() {
 
   return (
     <header className="h-20 w-full">
-      <nav style={{ backgroundColor: `${selectedColor}`, borderBottomColor: `${selectedColor}` }} className="w-full h-full border-b-2 text-white flex justify-between items-center gap-10 px-4">
-        <h1 className="font-Inter mr-auto text-xl sm:text-2xl md:text-3xl font-bold whitespace-nowrap">Currency Globe</h1>
-        <ul className="font-Roboto hidden sm:flex gap-5 ">
+      <nav style={{ backgroundColor: `${selectedColor}` }} className="relative w-full h-full border-b-2 border-white text-white flex justify-between items-center gap-10 px-4">
+        <h1 className="font-Inter mr-auto text-xl sm:text-2xl md:text-3xl font-bold whitespace-nowrap z-40">Currency Globe</h1>
+        <ul className="font-Roboto hidden sm:flex gap-5 z-40">
           <li className="hover:font-semibold sm:whitespace-pre-line"><Link to="/live-exchange-rates"> Live Exchange Rates </Link></li>
           <li className="hover:font-semibold sm:whitespace-pre-line"><Link to="/currency-converter"> Currency Converter </Link></li>
           <li className="hover:font-semibold sm:whitespace-pre-line"><Link to="/historical-rate-chart"> Historical Rate Chart </Link></li>
         </ul>
-        <div className="hidden sm:block">
+        <div className="hidden sm:block z-40">
           <Themes />
         </div>
         <button
-          className="hover:bg-[rgba(0,0,0,0.1)] grid place-content-center h-12 w-12 rounded-full sm:hidden text-2xl text-white outline-none"
+          className="hover:bg-[rgba(0,0,0,0.1)] grid place-content-center h-12 w-12 rounded-full sm:hidden text-2xl text-white outline-none z-40"
           onClick={toggleSidebar}
         >
           {isOpen ? (
@@ -51,7 +51,7 @@ export default function Navbar() {
           )}
         </button>
 
-        <div style={{ backgroundColor: `${selectedColor}`}} className={`absolute top-20 right-0 ${isOpen ? "translate-x-0" : "translate-x-full"} transform p-5 duration-300 border-t-2 border-white min-h-screen w-80 z-20`}>
+        <div style={{ backgroundColor: `${selectedColor}` }} className={`absolute top-0 right-0 ${isOpen ? "translate-x-0" : "-translate-x-[999px]"} transform p-5 pt-20 duration-300 border-white min-h-screen w-80 z-10`}>
           <ul className='flex flex-col mb-10'
           >
             <li className="hover:bg-[rgba(0,0,0,0.1)] text-xl block py-3">
