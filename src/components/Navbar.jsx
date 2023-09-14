@@ -51,7 +51,7 @@ export default function Navbar() {
           )}
         </button>
 
-        <div className={`absolute top-20 right-0 ${isOpen ? "translate-x-0" : "translate-x-full"} transform p-5 duration-300 border-t-2 border-white min-h-screen w-80 bg-${selectedColor}-700 z-20`}>
+        <div style={{ backgroundColor: `${selectedColor}`}} className={`absolute top-20 right-0 ${isOpen ? "translate-x-0" : "translate-x-full"} transform p-5 duration-300 border-t-2 border-white min-h-screen w-80 z-20`}>
           <ul className='flex flex-col mb-10'
           >
             <li className="hover:bg-[rgba(0,0,0,0.1)] text-xl block py-3">
