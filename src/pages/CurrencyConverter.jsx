@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../App.css';
-import { Autocomplete, Box, TextField, Typography, CircularProgress } from '@mui/material';
+import { Autocomplete, TextField, CircularProgress } from '@mui/material';
 import { currencies } from '../currency';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from "react-redux";
 
 export default function CurrencyConverter() {
@@ -82,7 +82,7 @@ export default function CurrencyConverter() {
   }
   return (
 
-    <div className="grid place-content-center min-h-[calc(100vh-80px)] w-full">
+    <div className="grid place-content-center h-[calc(100vh-80px)] w-full">
       <div style={{ borderColor: `${selectedColor}` }} className={`bg-white border-2  flex flex-col gap-11 p-4 md:p-8 rounded-2xl`}>
         <h2 style={{ color: `${selectedColor}` }} className={`text-3xl text-center font-bold  font-Inter`}>Currency Converter</h2>
         <div className='w-full flex flex-col sm:flex-row justify-center items-center gap-3 md:gap-6'>
@@ -135,7 +135,7 @@ export default function CurrencyConverter() {
               style={{ backgroundColor: `${selectedColor}` }}
               className=" text-white px-3 py-1 flex justify-center items-center gap-2 text- rounded-md"
             > Convert
-              <span><i className='text-2xl'>&rarr;</i></span>
+              <FontAwesomeIcon className='text-white' icon={faArrowRight} />
             </button>}
           <div className='border-[1px] border-[#c4c4c4] p-4 w-[226px] h-[56px]'>{exchangedValue}</div>
         </div>
