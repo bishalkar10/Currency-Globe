@@ -17,6 +17,8 @@ export default function CurrencyConverter() {
   const [exchangedValue, setExchangedValue] = useState('0'); // used to store the converted value which will shown on the screen
   const [loading, setLoading] = useState(false); // used to handle the loading state of the app
   const selectedColor = useSelector(state => state.theme.color);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     document.title = 'Currency Converter - Currency Globe';
@@ -83,8 +85,8 @@ export default function CurrencyConverter() {
   return (
 
     <div className="grid place-content-center h-[calc(100vh-80px)] w-full">
-      <div style={{ borderColor: `${selectedColor}` }} className={`bg-white border-2  flex flex-col gap-11 p-4 md:p-8 rounded-2xl`}>
-        <h2 style={{ color: `${selectedColor}` }} className={`text-3xl text-center font-bold  font-Inter`}>Currency Converter</h2>
+      <div style={{ borderColor: selectedColor.main }} className={`bg-white border-2  flex flex-col gap-11 p-4 md:p-8 rounded-2xl`}>
+        <h2 style={{ color: selectedColor.main }} className={`text-3xl text-center font-bold  font-Inter`}>Currency Converter</h2>
         <div className='w-full flex flex-col sm:flex-row justify-center items-center gap-3 md:gap-6'>
           <Autocomplete
             className='w-[250px] md:w-[300px]'
@@ -96,7 +98,7 @@ export default function CurrencyConverter() {
             getOptionLabel={(option) => `${option.name} (${option.value})`}
             renderInput={(params) => <TextField {...params} label="From Currency" />}
           />
-          <FontAwesomeIcon style={{ color: `${selectedColor}` }} icon={faArrowRightArrowLeft} />
+          <FontAwesomeIcon style={{ color: selectedColor.main }} icon={faArrowRightArrowLeft} />
           <Autocomplete
             className='w-[250px] md:w-[300px]'
             disablePortal
@@ -125,15 +127,21 @@ export default function CurrencyConverter() {
             ?
             <button
               disabled
-              style={{ backgroundColor: `${selectedColor}` }}
-              className={`text-white w-[108.05px] h-10 px-3 py-1 flex justify-center items-center gap-2 text- rounded-md`}
+              style={{ backgroundColor: selectedColor.main }}
+              className={`text-white w-[108.05px] h-10 px-3 py-1 flex justify-center items-center gap-2 rounded-md`}
             > <CircularProgress size="20px" sx={{ color: "#fff" }} />
             </button>
             :
             <button
+              className="text-white px-4 py-2 flex justify-center items-center gap-2 rounded-md"
               onClick={fetchExchangeRates}
-              style={{ backgroundColor: `${selectedColor}` }}
-              className=" text-white px-3 py-1 flex justify-center items-center gap-2 text- rounded-md"
+              style={{
+                backgroundColor: isActive ? selectedColor.active : isHovered ? selectedColor.hover : selectedColor.main,
+              }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              onMouseDown={() => setIsActive(true)}
+              onMouseUp={() => setIsActive(false)}
             > Convert
               <FontAwesomeIcon className='text-white' icon={faArrowRight} />
             </button>}
