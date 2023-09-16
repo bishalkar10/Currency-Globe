@@ -91,8 +91,8 @@ export default function HistoricalRateChart() {
 
   return (
     <div className="min-h-[calc(100vh-80px)] w-full px-3 sm:px-8 py-3">
-      <div style={{ borderColor: `${selectedColor}` }} className='bg-white p-5 border-2 rounded-lg mb-5'>
-        <h2 style={{ color: `${selectedColor}` }} className='text-xl sm:text-3xl text-center font-bold font-Inter'> Historical Rate Chart</h2>
+      <div style={{ borderColor: selectedColor.main }} className='bg-white p-5 border-2 rounded-lg mb-5'>
+        <h2 style={{ color: selectedColor.main }} className='text-xl sm:text-3xl text-center font-bold font-Inter'> Historical Rate Chart</h2>
         <Autocomplete
           className='mx-auto mt-5'
           disablePortal
