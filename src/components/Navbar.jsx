@@ -30,7 +30,7 @@ export default function Navbar() {
 
   return (
     <header className="h-20 w-full">
-      <nav style={{ backgroundColor: `${selectedColor}` }} className="relative w-full h-full border-b-2 border-white text-white flex justify-between items-center gap-10 px-4">
+      <nav style={{ backgroundColor: selectedColor.main }} className="relative w-full h-full border-b-2 border-white text-white flex justify-between items-center gap-10 px-4">
         <h1 className="font-Inter mr-auto text-xl sm:text-2xl md:text-3xl font-bold whitespace-nowrap z-40">Currency Globe</h1>
         <ul className="font-Roboto hidden sm:flex gap-5 z-40">
           <li className="hover:font-semibold sm:whitespace-pre-line"><Link to="/live-exchange-rates"> Live Exchange Rates </Link></li>
@@ -51,7 +51,7 @@ export default function Navbar() {
           )}
         </button>
 
-        <div style={{ backgroundColor: `${selectedColor}` }} className={`absolute top-0 right-0 ${isOpen ? "block" : "hidden"} p-5 pt-20 duration-300 border-white min-h-screen w-80 z-10`}>
+        <div style={{ backgroundColor: selectedColor.main }} className={`absolute top-0 right-0 ${isOpen ? "block" : "hidden"} p-5 pt-20 duration-300 border-white min-h-screen w-80 z-10`}>
           <ul className='flex flex-col mb-10'
           >
             <li className="hover:bg-[rgba(0,0,0,0.1)] text-xl block py-3">

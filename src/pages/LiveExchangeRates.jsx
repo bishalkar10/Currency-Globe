@@ -49,8 +49,8 @@ export default function LiveExchangeRates() {
 
   return (
     <div className="min-h-[calc(100vh-80px)] w-full px-3 sm:px-8 py-3">
-      <div style={{ borderColor: `${selectedColor}` }} className={`bg-white p-5 border-2 rounded-lg mb-5`}>
-        <h2 style={{ color: `${selectedColor}` }} className='text-xl sm:text-3xl text-center font-bold font-Inter'> Live Exchange Rates</h2>
+      <div style={{ borderColor: selectedColor.main }} className={`bg-white p-5 border-2 rounded-lg mb-5`}>
+        <h2 style={{ color: selectedColor.main }} className='text-xl sm:text-3xl text-center font-bold font-Inter'> Live Exchange Rates</h2>
         <Autocomplete
           className='mx-auto mt-5'
           disablePortal
@@ -74,7 +74,7 @@ const Card = ({ currencyCode, exchangeValue }) => {
   const selectedColor = useSelector(state => state.theme.color);
 
   return (
-    <div style={{ backgroundColor: `${selectedColor}` }} className={`py-3 px-5 custom-shadow2 rounded w-full flex justify-between items-center`}>
+    <div style={{ backgroundColor: selectedColor.main }} className={`py-3 px-5 custom-shadow2 rounded w-full flex justify-between items-center`}>
       <h4 className='text-3xl font-Inter font-semibold text-white text-left'>{currencyCode}</h4>
       <p className='text-center text-white font-Inter '>{exchangeValue}
       </p>
