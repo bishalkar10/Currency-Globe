@@ -80,6 +80,6 @@ export default function BarChart({ data }) {
 
   return (
     <div className='chart-container'>
-      <svg fill={selectedColor} ref={svgRef} width={width} height={height} className="chart"></svg></div>
+      <svg fill={selectedColor.main} ref={svgRef} width={width} height={height} className="chart"></svg></div>
   );
 };
